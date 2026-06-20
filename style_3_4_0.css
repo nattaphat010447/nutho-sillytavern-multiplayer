@@ -437,13 +437,12 @@
 /* Room card — compact: info on left, Join button on right */
 .mp-room-card {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
+    flex-direction: column;
+    gap: 4px;
     background: var(--mp-surface, #27272a);
     border: 1px solid var(--mp-border, #3f3f46);
     border-radius: var(--mp-radius-sm, 8px);
-    padding: 10px 12px;
+    padding: 12px 14px;
     transition: all 0.2s ease;
     cursor: default;
 }
@@ -473,7 +472,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    gap: 8px;
+    margin-bottom: 2px;
 }
 
 .mp-room-card-name {
@@ -481,9 +481,13 @@
     font-size: 14px;
     color: var(--mp-text, #f4f4f5);
     flex: 1;
+    min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .mp-room-card-icons {
@@ -503,8 +507,30 @@
 
 .mp-room-join-btn {
     width: 100%;
-    margin-top: 0 !important;
-    min-height: 44px;  /* Apple HIG touch target */
+    margin-top: 6px !important;
+    min-height: 44px;
+}
+
+.mp-room-card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.mp-room-card-code {
+    font-size: 11px;
+    color: var(--mp-text-muted, #a1a1aa);
+    font-family: var(--mp-mono);
+}
+
+/* Override pw-row to be horizontal */
+.mp-room-card-actions .mp-room-pw-row {
+    display: flex;
+    gap: 6px;
+    align-items: stretch;
+    width: 100%;
+    flex-basis: auto;
 }
 
 /* Password input in room card — 16px prevents iOS auto-zoom */
@@ -1131,6 +1157,12 @@ select.mp-input {
     accent-color: var(--mp-accent);
     cursor: pointer;
     flex-shrink: 0;
+    transition: background var(--mp-transition), border-color var(--mp-transition);
+}
+
+.mp-checkbox-label input[type="checkbox"]:checked {
+    background: var(--mp-accent) !important;
+    border-color: var(--mp-accent) !important;
 }
 
 /* Hint text */
@@ -1612,4 +1644,75 @@ select.mp-input {
     font-size: 14px !important;
     flex-shrink: 0;
     min-height: 0 !important;
+}
+
+/* ============================================================
+   BROWSE MODAL — New card-based design (v3.3.0)
+   ============================================================ */
+
+/* Badge components for player count */
+.mp-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.mp-badge-players {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--mp-accent, #818cf8);
+}
+
+.mp-badge-full {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--mp-err, #f87171);
+}
+
+/* Room card meta line (Host + badge) */
+.mp-room-card-meta {
+    font-size: 12.5px;
+    color: var(--mp-text-muted, #a1a1aa);
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.mp-room-card-meta strong {
+    color: var(--mp-text, #f4f4f5);
+    font-weight: 600;
+}
+
+/* Password confirm button (new separate button) */
+.mp-room-pw-confirm {
+    flex-shrink: 0;
+    min-width: 80px;
+    padding: 10px 12px;
+    font-size: 14px;
+}
+
+/* Password row - flex layout with equal height */
+.mp-room-pw-row {
+    display: flex;
+    gap: 6px;
+    align-items: stretch;
+    margin-top: 6px;
+}
+
+.mp-room-pw-row .mp-room-pw-input {
+    flex: 1;
+    height: 38px;
+    min-height: 38px;
+    margin: 0 !important;
+    width: auto !important;
+}
+
+.mp-room-pw-row .mp-room-pw-confirm {
+    height: 38px;
+    min-height: 38px;
 }
