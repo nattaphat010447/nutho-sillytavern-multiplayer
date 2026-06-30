@@ -948,6 +948,14 @@ select.mp-input {
     transition: background var(--mp-transition);
 }
 
+/* Avatar wrapper — needed for overlay badge positioning */
+.mp-avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+}
+
 /* Avatar circle */
 .mp-avatar {
     width: 26px;
@@ -999,6 +1007,22 @@ select.mp-input {
     background: rgba(129,140,248,0.18) !important;
     opacity: 1;
     box-shadow: 0 0 0 1px rgba(129,140,248,0.4);
+}
+
+/* Latency ping badge — overlaid on bottom-right of avatar circle (host view only) */
+.mp-ping-badge {
+    position: absolute;
+    bottom: -3px;
+    right: -3px;
+    font-size: 9px;
+    line-height: 1;
+    cursor: default;
+    user-select: none;
+    pointer-events: none;
+    /* tiny background pill so it reads against any avatar colour */
+    background: var(--mp-bg);
+    border-radius: 50%;
+    padding: 1px;
 }
 
 /* Kick button */
